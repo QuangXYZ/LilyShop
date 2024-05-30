@@ -102,9 +102,6 @@ class MainActivity : BaseActivity() {
         binding.recyclerViewBrand.adapter = brandAdapter
         binding.recyclerViewBrand.setHasFixedSize(true)
         binding.recyclerViewBrand.isNestedScrollingEnabled = false
-        binding.recyclerViewBrand.setItemViewCacheSize(20)
-        binding.recyclerViewBrand.setDrawingCacheEnabled(true)
-        binding.recyclerViewBrand.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH)
         binding.recyclerViewBrand.layoutManager =
             androidx.recyclerview.widget.LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewBrand.adapter = brandAdapter
