@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706789800154",
+    "project_id": "lilyshop-cd934",
+    "storage_bucket": "lilyshop-cd934.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706789800154:android:86ef91e6ecbb1f361a4de3",
+        "android_client_info": {
+          "package_name": "com.quang.lilyshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxIBB3RAan86HtUvORkCrqnbo7BtyKVHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
