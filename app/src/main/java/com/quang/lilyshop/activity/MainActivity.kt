@@ -1,5 +1,6 @@
 package com.quang.lilyshop.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -46,9 +47,21 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        settingUpListeners()
         initBanner()
         initBrand()
         initProduct()
+
+
+    }
+
+    private fun settingUpListeners() {
+        binding.cart.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+
+
+        })
+
     }
 
     private fun initBanner() {
@@ -120,9 +133,6 @@ class MainActivity : BaseActivity() {
 
 
     }
-
-
-
 
     override fun onDestroy() {
         super.onDestroy()
