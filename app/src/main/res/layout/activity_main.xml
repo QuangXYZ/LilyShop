@@ -67,18 +67,43 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <ImageView
+                                android:id="@+id/cart"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:padding="10dp"
+                                android:src="@drawable/cart"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:textAlignment="center"
+                                android:background="@drawable/red_background"
+                                android:text="0"
+                                android:gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                         <ImageView
                             android:layout_width="42dp"
                             android:layout_height="42dp"
-                            android:layout_marginEnd="8dp"
                             android:padding="10dp"
                             android:src="@drawable/bell" />
-
-                        <ImageView
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:padding="10dp"
-                            android:src="@drawable/search" />
 
                     </LinearLayout>
 
