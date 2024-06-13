@@ -154,21 +154,25 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
+                    android:id="@+id/addToCartBtn"
                     style="@android:style/Widget.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:textSize="18sp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/purple_background"
                     android:text="Buy now" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/btn_2" />
+                    android:id="@+id/cartBtn"
+                    android:layout_width="50dp"
+                    android:background="@drawable/grey_background"
+                    android:layout_height="50dp"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/btn_2"
+                    app:tint="@color/black" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
