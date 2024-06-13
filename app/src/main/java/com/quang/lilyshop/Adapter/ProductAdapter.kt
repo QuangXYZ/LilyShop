@@ -1,11 +1,13 @@
 package com.quang.lilyshop.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.quang.lilyshop.Model.ProductModel
+import com.quang.lilyshop.activity.DetailActivity
 import com.quang.lilyshop.databinding.SingleRecommendedItemBinding
 
 class ProductAdapter(val products: MutableList<ProductModel>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -26,6 +28,12 @@ class ProductAdapter(val products: MutableList<ProductModel>) : RecyclerView.Ada
         holder.binding.productName.text = products[position].title
         holder.binding.price.text = products[position].price.toString()
         holder.binding.starScore.text = products[position].rating.toString()
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("object", products[position])
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 
