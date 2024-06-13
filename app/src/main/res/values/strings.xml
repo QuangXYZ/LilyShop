@@ -3,4 +3,6 @@
     <string name="intro_title">Step into your<font color="#6033ba"> style\n A world of shirt </font> </string>
     <string name="intro_text">Browse the latest styles form the top brands\nGet personalized recommendations\nEnjoy fast and free shipping</string>
     <string name="intro_signin">Already have an account<font color="#6033ba"> Sign In </font> </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

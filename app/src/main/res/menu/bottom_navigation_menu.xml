@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item_1"
+        android:id="@+id/nav_home"
         android:icon="@drawable/direction"
         android:title="Home"/>
     <item
-        android:id="@+id/item_2"
+        android:id="@+id/nav_search"
         android:icon="@drawable/search"
         android:title="Search"/>
     <item
-        android:id="@+id/item_3"
+        android:id="@+id/nav_wish"
         android:icon="@drawable/heart"
         android:title="Wish"/>
 <!--    <item-->
@@ -16,7 +16,7 @@
 <!--        android:icon="@drawable/receipt"-->
 <!--        android:title="Order"/>-->
     <item
-        android:id="@+id/item_5"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/user"
         android:title="Profile"/>
 </menu>
