@@ -5,7 +5,7 @@
     android:id="@+id/colorLayout"
     android:layout_width="48dp"
     android:layout_height="48dp"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     android:background="@drawable/grey_background">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="S"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

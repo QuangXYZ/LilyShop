@@ -7,18 +7,18 @@ import android.service.quicksettings.Tile
 data class ProductModel(
     var title: String = "",
     var description: String = "",
-    var price: Double = 0.0,
     var picUrl: ArrayList<String> = ArrayList(),
     var size: ArrayList<String> = ArrayList(),
     var rating: Double = 0.0,
+    var price: Double = 0.0,
     var numberInCart: Int = 0
 ):Parcelable{
     constructor(parcel: Parcel):this(
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.createStringArrayList() as ArrayList<String>,
+        parcel.createStringArrayList() as ArrayList<String>,
         parcel.readDouble(),
-        parcel.createStringArrayList() as ArrayList<String>,
-        parcel.createStringArrayList() as ArrayList<String>,
         parcel.readDouble()
     )
 
