@@ -1,9 +1,7 @@
 package com.quang.lilyshop.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quang.lilyshop.Adapter.ColorAdapter
 import com.quang.lilyshop.Adapter.SizeAdapter
@@ -11,7 +9,6 @@ import com.quang.lilyshop.Adapter.SliderAdapter
 import com.quang.lilyshop.Helper.ManagmentCart
 import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.Model.SliderModel
-import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.ActivityDetailBinding
 
 class DetailActivity : BaseActivity() {
@@ -29,6 +26,7 @@ class DetailActivity : BaseActivity() {
         getBundle()
         banners()
         initLists()
+
 
     }
 
@@ -55,8 +53,11 @@ class DetailActivity : BaseActivity() {
     private fun banners() {
         val sliderItems = ArrayList<SliderModel>()
         for (imageUrl in product.picUrl){
+
             sliderItems.add(SliderModel(imageUrl))
+
         }
+
 
         binding.slider.adapter = SliderAdapter(sliderItems, binding.slider)
         binding.slider.clipToPadding = true
@@ -75,7 +76,9 @@ class DetailActivity : BaseActivity() {
         binding.titletxt.text = product.title
         binding.priceTxt.text = "$" + product.price
         binding.descriptionTxt.text = product.description
-        binding.ratingTxt.text = "${product.rating} Rating"
+        binding.productRating.stepSize = 0.01f;
+        binding.productRating.numStars = 5
+        binding.productRating.rating = product.rating.toFloat()
         binding.addToCartBtn.setOnClickListener {
             product.numberInCart = numberOder
             managmentCart.insertFood(product)
