@@ -5,14 +5,14 @@ import android.widget.Toast
 import com.quang.lilyshop.Model.ProductModel
 
 
-class ManagmentCart(val context: Context) {
+class ManagementCart(val context: Context) {
 
     private val tinyDB = TinyDB(context)
 
-    fun insertFood(item: ProductModel) {
+    fun insertItem(item: ProductModel) {
         var listFood = getListCart()
-        val existAlready = listFood.any { it.title == item.title }
-        val index = listFood.indexOfFirst { it.title == item.title }
+        val existAlready = listFood.any { it.title == item.title && it.selectedSize == item.selectedSize }
+        val index = listFood.indexOfFirst { it.title == item.title && it.selectedSize == item.selectedSize }
 
         if (existAlready) {
             listFood[index].numberInCart = item.numberInCart
@@ -20,7 +20,7 @@ class ManagmentCart(val context: Context) {
             listFood.add(item)
         }
         tinyDB.putListObject("CartList", listFood)
-        Toast.makeText(context, "Added to your Cart", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Added to your Cart ${item.selectedSize}", Toast.LENGTH_SHORT).show()
     }
 
     fun getListCart(): ArrayList<ProductModel> {
@@ -39,6 +39,11 @@ class ManagmentCart(val context: Context) {
 
     fun plusItem(listFood: ArrayList<ProductModel>, position: Int, listener: ChangeNumberItemsListener) {
         listFood[position].numberInCart++
+        tinyDB.putListObject("CartList", listFood)
+        listener.onChanged()
+    }
+    fun deleteItem(listFood: ArrayList<ProductModel>, position: Int, listener: ChangeNumberItemsListener) {
+        listFood.removeAt(position)
         tinyDB.putListObject("CartList", listFood)
         listener.onChanged()
     }

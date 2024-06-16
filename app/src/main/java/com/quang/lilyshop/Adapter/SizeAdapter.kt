@@ -16,7 +16,7 @@ import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.ViewholderColorBinding
 import com.quang.lilyshop.databinding.ViewholderSizeBinding
 
-class SizeAdapter(val items: MutableList<String>) :
+class SizeAdapter(val items: MutableList<String>, private val onItemClick: (String) -> Unit) :
     RecyclerView.Adapter<SizeAdapter.Viewholder>() {
 
     private lateinit var context: Context
@@ -34,16 +34,17 @@ class SizeAdapter(val items: MutableList<String>) :
 
     override fun onBindViewHolder(holder: SizeAdapter.Viewholder, position: Int) {
 
-        holder.binding.sizeTxt.text=items[position]
+        holder.binding.sizeTxt.text=items[holder.absoluteAdapterPosition]
 
         holder.binding.root.setOnClickListener {
             lastSelectedPosition = selectedPosition
-            selectedPosition = position
+            selectedPosition = holder.absoluteAdapterPosition
             notifyItemChanged(lastSelectedPosition)
             notifyItemChanged(selectedPosition)
+            onItemClick(items[holder.absoluteAdapterPosition])
         }
 
-        if (selectedPosition == position) {
+        if (selectedPosition == holder.absoluteAdapterPosition) {
             holder.binding.colorLayout.setBackgroundResource(R.drawable.grey_bg_selected)
             holder.binding.sizeTxt.setTextColor(context.resources.getColor(R.color.purple))
         } else {
