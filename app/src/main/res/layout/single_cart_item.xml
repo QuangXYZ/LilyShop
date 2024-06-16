@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/removeProduct"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:src="@drawable/cross"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/productImg"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:background="@drawable/grey_background"
@@ -28,28 +28,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Product name"
         android:textColor="@color/darkGrey"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/productImg"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/productPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="123 $"
         android:textColor="@color/purple"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toEndOf="@+id/productImg"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+    <TextView
+        android:id="@+id/productSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="123 $"
+        android:textColor="@color/purple"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/productImg"
+        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
 
     <TextView
+        android:id="@+id/productTotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,19 +69,18 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/productImg"
  />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/grey_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/plusCartBtn"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_margin="2dp"
@@ -84,7 +94,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/numberInCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -92,12 +102,12 @@
             android:textSize="16sp"
             android:textColor="@color/darkGrey"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView12"
-            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintEnd_toStartOf="@+id/plusCartBtn"
+            app:layout_constraintStart_toEndOf="@+id/minusCartBtn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/minusCartBtn"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_margin="2dp"

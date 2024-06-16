@@ -11,7 +11,8 @@ data class ProductModel(
     var size: ArrayList<String> = ArrayList(),
     var rating: Double = 0.0,
     var price: Double = 0.0,
-    var numberInCart: Int = 0
+    var numberInCart: Int = 0,
+    var selectedSize:String = ""
 ):Parcelable{
     constructor(parcel: Parcel):this(
         parcel.readString().toString(),
@@ -31,8 +32,8 @@ data class ProductModel(
      dest.writeString(description)
      dest.writeStringList(picUrl)
      dest.writeStringList(size)
-     dest.writeDouble(price)
      dest.writeDouble(rating)
+     dest.writeDouble(price)
     }
 
     companion object CREATOR : Parcelable.Creator<ProductModel> {
