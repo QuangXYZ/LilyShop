@@ -77,7 +77,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/numberInCart"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:textAlignment="center"
