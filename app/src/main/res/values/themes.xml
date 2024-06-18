@@ -18,5 +18,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="strokeTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#DAD8D8</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
 
 </resources>
