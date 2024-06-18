@@ -58,7 +58,7 @@
             android:padding="5dp"
             android:textColor="@color/textColor"
             android:background="@drawable/textview_background"
-            android:text="Gửi mã OTP"/>
+            android:text="Send OTP"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
