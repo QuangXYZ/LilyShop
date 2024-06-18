@@ -47,6 +47,7 @@
         android:text="Let's get started"
         />
     <TextView
+        android:id="@+id/sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/intro_signin"
