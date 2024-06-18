@@ -14,4 +14,7 @@
     <color name="darkGrey">#616161</color>
     <color name="red">#D7443E</color>
     <color name="yellow">#FFC30D</color>
+    <color name="switcher_on_color">#48ea8b</color>
+    <color name="switcher_off_color">#ff4651</color>
+    <color name="switcher_icon_color">#FFFFFFFF</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.quang.lilyshop.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quang.lilyshop.Adapter.AddressAdapter
@@ -18,6 +19,7 @@ class AddressSelectionActivity : BaseActivity() {
         binding = ActivityAddressSelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initAddress()
+        settingsUpListener()
     }
 
     private fun initAddress() {
@@ -48,6 +50,14 @@ class AddressSelectionActivity : BaseActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.viewAddress.adapter = AddressAdapter(address)
 
+    }
+    private fun settingsUpListener() {
+        binding.addNewAddress.setOnClickListener {
+            startActivity(Intent(this, NewAddressActivity::class.java))
+        }
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 
 }

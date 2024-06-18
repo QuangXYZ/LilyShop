@@ -76,6 +76,7 @@
             app:dividerColor="@color/lightGrey"/>
 
         <LinearLayout
+            android:id="@+id/addNewAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
