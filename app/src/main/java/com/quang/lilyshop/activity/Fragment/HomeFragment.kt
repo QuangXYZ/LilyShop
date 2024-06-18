@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import com.quang.lilyshop.Adapter.BrandAdapter
 import com.quang.lilyshop.Adapter.ProductAdapter
 import com.quang.lilyshop.Adapter.SliderAdapter
+import com.quang.lilyshop.Helper.ManagementCart
 import com.quang.lilyshop.Model.BrandModel
 import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.Model.SliderModel
@@ -33,6 +34,7 @@ class HomeFragment : Fragment() {
     private lateinit var sliderAdapter: SliderAdapter
     private lateinit var brandAdapter: BrandAdapter
     private lateinit var brands: MutableList<BrandModel>
+    private lateinit var managementCart: ManagementCart
 
     private lateinit var productAdapter: ProductAdapter
     private lateinit var products: MutableList<ProductModel>
@@ -57,12 +59,21 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        managementCart = ManagementCart(requireContext())
+        binding.numberInCart.text = managementCart.getListCart().size.toString()
+
         initBanner()
         initBrand()
         initProduct()
         settingUpListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.numberInCart.text = managementCart.getListCart().size.toString()
+
+    }
 
     private fun settingUpListeners() {
         binding.cart.setOnClickListener(View.OnClickListener {

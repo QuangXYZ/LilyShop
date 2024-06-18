@@ -90,6 +90,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/changeAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change address"
@@ -101,6 +102,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/layoutAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"

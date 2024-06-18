@@ -1,5 +1,6 @@
 package com.quang.lilyshop.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,20 +24,24 @@ class CheckoutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        managementCart = ManagementCart(this)
+        init()
         initOrderLists()
         calculatePayment()
         settingUpListener()
 
     }
 
+    private fun init(){
+        managementCart = ManagementCart(this)
+
+    }
     private fun initOrderLists() {
         binding.viewOrder.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.viewOrder.adapter = OrderDetailAdapter(managementCart.getListCart())
     }
 
-    fun calculatePayment (){
+    private fun calculatePayment (){
         val percentTax = 0.02
         val delivery = 10.0
         tax = Math.round((managementCart.getTotalFee()*percentTax)*100)/100.0
@@ -51,9 +56,15 @@ class CheckoutActivity : BaseActivity() {
             subtotal.text = "$${productTotal}"
         }
     }
-    fun settingUpListener(){
+    private fun settingUpListener(){
         binding.backBtn.setOnClickListener {
             finish()
+        }
+        binding.changeAddress.setOnClickListener {
+            startActivity(Intent(this, AddressSelectionActivity::class.java))
+        }
+        binding.layoutAddress.setOnClickListener {
+            startActivity(Intent(this, AddressSelectionActivity::class.java))
         }
     }
 
