@@ -13,6 +13,9 @@
         android:theme="@style/Theme.LilyShop"
         tools:targetApi="31">
         <activity
+            android:name=".activity.SelectLocationMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ChooseLocationActivity"
             android:exported="false" />
         <activity
@@ -48,6 +51,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8" />
     </application>
 
 </manifest>
