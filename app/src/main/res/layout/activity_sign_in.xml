@@ -39,7 +39,7 @@
             android:hint="Phone number">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_phone_number"
+                android:id="@+id/phone_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -49,16 +49,33 @@
                 android:hint="Phone number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
             android:layout_gravity="right"
+            android:layout_marginRight="25dp"
             android:layout_marginTop="5dp"
-            android:padding="5dp"
-            android:textColor="@color/textColor"
-            android:background="@drawable/textview_background"
-            android:text="Send OTP"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/send_OTP_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:padding="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/textview_background"
+                android:text="Send OTP"/>
+
+            <TextView
+                android:id="@+id/resend_OTP_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:padding="5dp"
+                android:background="@drawable/textview_background"
+                android:text="Resend OTP"/>
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -76,7 +93,7 @@
             android:hint="Enter OTP">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_otp"
+                android:id="@+id/OTP_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -88,7 +105,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_btn"
+            android:id="@+id/sign_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
