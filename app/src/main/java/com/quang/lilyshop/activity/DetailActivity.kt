@@ -1,6 +1,5 @@
 package com.quang.lilyshop.activity
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import com.quang.lilyshop.Adapter.SliderAdapter
 import com.quang.lilyshop.Helper.ManagementCart
 import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.Model.SliderModel
-import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.ActivityDetailBinding
 
 class DetailActivity : BaseActivity() {

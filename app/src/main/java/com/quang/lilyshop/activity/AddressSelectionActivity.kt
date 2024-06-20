@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quang.lilyshop.Adapter.AddressAdapter
-import com.quang.lilyshop.Adapter.OrderDetailAdapter
 import com.quang.lilyshop.Model.AddressModel
-import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.databinding.ActivityAddressSelectionBinding
 
 class AddressSelectionActivity : BaseActivity() {

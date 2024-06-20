@@ -122,7 +122,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:clickable="false"
             android:focusableInTouchMode="true"
             app:boxBackgroundColor="@color/white"
             app:endIconDrawable="@drawable/angle_left"
@@ -130,6 +129,7 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/chooseProvince"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_bkg"

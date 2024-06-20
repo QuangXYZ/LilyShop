@@ -2,7 +2,6 @@ package com.quang.lilyshop.Model
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.service.quicksettings.Tile
 
 data class ProductModel(
     var title: String = "",

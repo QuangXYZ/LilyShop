@@ -1,18 +1,11 @@
 package com.quang.lilyshop.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.quang.lilyshop.Adapter.CartAdapter
-import com.quang.lilyshop.Adapter.ColorAdapter
 import com.quang.lilyshop.Adapter.OrderDetailAdapter
-import com.quang.lilyshop.Adapter.SizeAdapter
-import com.quang.lilyshop.Helper.ChangeNumberItemsListener
 import com.quang.lilyshop.Helper.ManagementCart
-import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.ActivityCheckoutBinding
-import com.quang.lilyshop.databinding.ActivityDetailBinding
 
 class CheckoutActivity : BaseActivity() {
     private lateinit var binding: ActivityCheckoutBinding

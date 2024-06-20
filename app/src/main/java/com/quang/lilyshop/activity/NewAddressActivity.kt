@@ -1,6 +1,7 @@
 package com.quang.lilyshop.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
@@ -40,6 +41,9 @@ class NewAddressActivity : BaseActivity() {
             office = 1
             binding.office.strokeColor = resources.getColor(R.color.purple)
             binding.home.strokeColor = resources.getColor(R.color.lightGrey)
+        }
+        binding.chooseProvince.setOnClickListener {
+            startActivity(Intent(this, ChooseLocationActivity::class.java))
         }
 
     }

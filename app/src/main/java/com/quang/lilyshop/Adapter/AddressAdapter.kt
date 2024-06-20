@@ -1,18 +1,12 @@
 package com.quang.lilyshop.Adapter
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.quang.lilyshop.Model.AddressModel
-import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.R
-import com.quang.lilyshop.activity.DetailActivity
 import com.quang.lilyshop.databinding.SingleAddressBinding
-import com.quang.lilyshop.databinding.SingleRecommendedItemBinding
 
 class AddressAdapter(val address: MutableList<AddressModel>) : RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
 

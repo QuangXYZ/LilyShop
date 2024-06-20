@@ -2,7 +2,6 @@ package com.quang.lilyshop.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.activity.DetailActivity
 import com.quang.lilyshop.databinding.SingleOrderDetailBinding
-import com.quang.lilyshop.databinding.SingleRecommendedItemBinding
 
 class OrderDetailAdapter(val products: MutableList<ProductModel>) : RecyclerView.Adapter<OrderDetailAdapter.ViewHolder>() {
 

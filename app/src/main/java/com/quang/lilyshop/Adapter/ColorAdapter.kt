@@ -1,17 +1,10 @@
 package com.quang.lilyshop.Adapter
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.quang.lilyshop.Model.BrandModel
 import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.ViewholderColorBinding
 

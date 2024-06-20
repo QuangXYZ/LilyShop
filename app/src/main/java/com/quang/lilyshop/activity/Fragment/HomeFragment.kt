@@ -20,10 +20,8 @@ import com.quang.lilyshop.Helper.ManagementCart
 import com.quang.lilyshop.Model.BrandModel
 import com.quang.lilyshop.Model.ProductModel
 import com.quang.lilyshop.Model.SliderModel
-import com.quang.lilyshop.R
 import com.quang.lilyshop.ViewModel.MainViewModel
 import com.quang.lilyshop.activity.CartActivity
-import com.quang.lilyshop.databinding.ActivityMainBinding
 import com.quang.lilyshop.databinding.FragmentHomeBinding
 
 
