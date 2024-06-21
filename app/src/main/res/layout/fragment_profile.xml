@@ -7,9 +7,10 @@
     tools:context=".activity.Fragment.ProfileFragment">
 
     <TextView
+        android:id="@+id/sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="Sign out"
         android:textColor="@color/darkGrey"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
