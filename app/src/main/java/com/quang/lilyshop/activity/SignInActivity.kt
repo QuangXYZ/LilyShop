@@ -3,6 +3,8 @@ package com.quang.lilyshop.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -33,23 +35,70 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun settingUpListener() {
+
         binding.sendOTPButton.setOnClickListener{
-            sendVerificationCode(binding.phoneEditText.text.toString())
+            val phoneNumber = binding.phoneEditText.text.toString()
+
+            binding.sendOTPButton.setBackgroundResource(R.drawable.textview_background2)
+            // Thay đổi màu nền thành màu tím sau vài giây
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.sendOTPButton.setBackgroundResource(R.drawable.textview_background)
+            }, 100) // 2000 milliseconds = 1 giây
+
+            if (phoneNumber.isEmpty()){
+                Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            sendVerificationCode("+84$phoneNumber")
         }
 
         binding.resendOTPButton.setOnClickListener{
-            resendVerificationCode(binding.phoneEditText.text.toString())
+            val phoneNumber = binding.phoneEditText.text.toString()
+
+            binding.resendOTPButton.setBackgroundResource(R.drawable.textview_background2)
+            // Thay đổi màu nền thành màu tím sau vài giây
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.resendOTPButton.setBackgroundResource(R.drawable.textview_background)
+            }, 100) // 2000 milliseconds = 1 giây
+
+            if (phoneNumber.isEmpty()){
+                Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            resendVerificationCode("+84$phoneNumber")
         }
 
         binding.signInButton.setOnClickListener{
-            verifyCode(binding.OTPEditText.text.toString())
+            val otp = binding.OTPEditText.text.toString()
+            if (otp.isEmpty()){
+                Toast.makeText(this, "Please Enter OTP", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            verifyCode(otp)
+        }
+
+        binding.googleLinearLayout.setOnClickListener{
+            binding.googleLinearLayout.setBackgroundResource(R.drawable.edittext_background2)
+            // Thay đổi màu nền thành màu tím sau vài giây
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.googleLinearLayout.setBackgroundResource(R.drawable.edittext_background)
+            }, 100)
+        }
+
+        binding.facebookLinearLayout.setOnClickListener{
+            binding.facebookLinearLayout.setBackgroundResource(R.drawable.edittext_background2)
+            // Thay đổi màu nền thành màu tím sau vài giây
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.facebookLinearLayout.setBackgroundResource(R.drawable.edittext_background)
+            }, 100)
         }
     }
 
     private fun sendVerificationCode(phoneNumber: String) {
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                signInWithPhoneAuthCredential(credential)
+//                signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -70,7 +119,7 @@ class SignInActivity : AppCompatActivity() {
     private fun resendVerificationCode(phoneNumber: String) {
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                signInWithPhoneAuthCredential(credential)
+//                signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
