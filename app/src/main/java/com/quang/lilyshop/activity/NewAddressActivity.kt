@@ -46,6 +46,10 @@ class NewAddressActivity : BaseActivity() {
             startActivity(Intent(this, ChooseLocationActivity::class.java))
         }
 
+        binding.chooseStreet.setOnClickListener {
+            startActivity(Intent(this, SelectLocationMapActivity::class.java))
+        }
+
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
