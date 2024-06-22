@@ -79,6 +79,7 @@
                 android:hint="Full Number"
                 android:imeOptions="actionNext"
 
+                android:textSize="14sp"
                 android:inputType="text"
                 android:maxLines="1" />
 
@@ -100,8 +101,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_bkg"
-                android:hint="Phone Numbere"
+                android:hint="Phone Number"
                 android:inputType="number"
+                android:textSize="14sp"
                 android:imeOptions="actionDone"
                 android:maxLines="1" />
 
@@ -134,8 +136,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_bkg"
                 android:focusable="false"
+                android:textSize="14sp"
                 android:hint="City, District, Ward"
-                android:maxLines="1" />
+                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,10 +160,26 @@
                 android:focusable="false"
                 android:hint="Street Name, Building, House No."
                 android:inputType="number"
+                android:textSize="14sp"
 
                 android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imgLayout"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="20dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgMap"
+                android:layout_width="match_parent"
+                android:scaleType="center"
+                android:layout_height="104dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
 
 
         <TextView

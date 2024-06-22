@@ -60,7 +60,7 @@
         android:layout_height="0dp"
         android:layout_below="@id/constraintLayout"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -68,4 +68,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/constraintLayout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/confirmBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/purple_button_background"
+        android:text="Confirm"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 </RelativeLayout>
