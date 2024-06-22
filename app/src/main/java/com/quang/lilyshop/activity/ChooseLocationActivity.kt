@@ -1,6 +1,7 @@
 package com.quang.lilyshop.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -53,36 +54,39 @@ class ChooseLocationActivity : BaseActivity() {
 
     private fun loadProvinces() {
         binding.listAddress.layoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(binding.listAddress.context, LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(binding.listAddress.context, LinearLayoutManager.VERTICAL)
         binding.listAddress.addItemDecoration(dividerItemDecoration)
         viewModel.provinces.observe(this, Observer { state ->
-                when (state) {
-                    is ApiState.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                        binding.listAddress.visibility = View.GONE
-                    }
-                    is ApiState.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.listAddress.visibility = View.VISIBLE
-                        provinces = state.data.toMutableList()
-                        provinceAdapter = ProvinceAdapter(provinces, object : OnItemClickListener {
-                            override fun onItemClick(position: Int) {
-                                address.clear()
-                                address.add(provinces[position].province_name)
-                                address.add("Select District")
-                                addressAdapter.select(1)
-                                binding.addressLabel.text = "District"
-                                addressAdapter.notifyDataSetChanged()
-                                viewModel.fetchDistricts(provinces[position].province_id)
-                                provinceId = provinces[position].province_id
-                                loadDistricts()
-                            }
-                        })
-                        binding.listAddress.adapter = provinceAdapter
-                    }
-                    is ApiState.Error -> {
+            when (state) {
+                is ApiState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.listAddress.visibility = View.GONE
+                }
 
-                    }
+                is ApiState.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.listAddress.visibility = View.VISIBLE
+                    provinces = state.data.toMutableList()
+                    provinceAdapter = ProvinceAdapter(provinces, object : OnItemClickListener {
+                        override fun onItemClick(position: Int) {
+                            address.clear()
+                            address.add(provinces[position].province_name)
+                            address.add("Select District")
+                            addressAdapter.select(1)
+                            binding.addressLabel.text = "District"
+                            addressAdapter.notifyDataSetChanged()
+                            viewModel.fetchDistricts(provinces[position].province_id)
+                            provinceId = provinces[position].province_id
+                            loadDistricts()
+                        }
+                    })
+                    binding.listAddress.adapter = provinceAdapter
+                }
+
+                is ApiState.Error -> {
+
+                }
 
             }
         })
@@ -90,7 +94,8 @@ class ChooseLocationActivity : BaseActivity() {
 
     private fun loadDistricts() {
         binding.listAddress.layoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(binding.listAddress.context, LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(binding.listAddress.context, LinearLayoutManager.VERTICAL)
         binding.listAddress.addItemDecoration(dividerItemDecoration)
         viewModel.districts.observe(this, Observer { state ->
             when (state) {
@@ -98,6 +103,7 @@ class ChooseLocationActivity : BaseActivity() {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.listAddress.visibility = View.GONE
                 }
+
                 is ApiState.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.listAddress.visibility = View.VISIBLE
@@ -120,6 +126,7 @@ class ChooseLocationActivity : BaseActivity() {
                     })
                     binding.listAddress.adapter = districtAdapter
                 }
+
                 is ApiState.Error -> {
 
                 }
@@ -130,7 +137,8 @@ class ChooseLocationActivity : BaseActivity() {
 
     private fun loadWards() {
         binding.listAddress.layoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(binding.listAddress.context, LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(binding.listAddress.context, LinearLayoutManager.VERTICAL)
         binding.listAddress.addItemDecoration(dividerItemDecoration)
         viewModel.ward.observe(this, Observer { state ->
             when (state) {
@@ -138,6 +146,7 @@ class ChooseLocationActivity : BaseActivity() {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.listAddress.visibility = View.GONE
                 }
+
                 is ApiState.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.listAddress.visibility = View.VISIBLE
@@ -146,11 +155,20 @@ class ChooseLocationActivity : BaseActivity() {
                             address.removeLast()
                             address.add(state.data[position].ward_name)
                             addressAdapter.notifyDataSetChanged()
+                            val intent = Intent()
+                            intent.putExtra("province", address[0])
+                            intent.putExtra("district", address[1])
+                            intent.putExtra("ward", address[2])
+                            setResult(RESULT_OK, intent)
+                            finish()
+
+
                         }
 
                     })
                     binding.listAddress.adapter = wardAdapter
                 }
+
                 is ApiState.Error -> {
 
                 }
@@ -158,25 +176,28 @@ class ChooseLocationActivity : BaseActivity() {
             }
         })
     }
+
     private fun init() {
 
         address = mutableListOf()
         address.add("Select City")
 
-        addressAdapter =  AddressLineAdapter(address, object : OnItemClickListener {
+        addressAdapter = AddressLineAdapter(address, object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 when (position) {
                     0 -> {
-                        if (binding.addressLabel.text != "City"){
+                        if (binding.addressLabel.text != "City") {
                             loadProvinces()
                             binding.addressLabel.text = "City"
                         }
 
                     }
+
                     1 -> {
                         binding.addressLabel.text = "District"
                         viewModel.fetchDistricts(provinceId)
                     }
+
                     2 -> {
                         binding.addressLabel.text = "Ward"
                         viewModel.fetchWards(districtId)
@@ -202,7 +223,7 @@ class ChooseLocationActivity : BaseActivity() {
 
 
 
-        binding.search.setOnQueryTextListener(object :  SearchView.OnQueryTextListener {
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -212,7 +233,8 @@ class ChooseLocationActivity : BaseActivity() {
                     provinceAdapter.filter(newText.toString())
                     districtAdapter.filter(newText.toString())
                     wardAdapter.filter(newText.toString())
-                }catch (e: Exception) {}
+                } catch (e: Exception) {
+                }
 
                 return true
 
@@ -222,7 +244,6 @@ class ChooseLocationActivity : BaseActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
-
 
 
     }
