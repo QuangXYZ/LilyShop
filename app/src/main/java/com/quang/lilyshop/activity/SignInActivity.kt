@@ -124,6 +124,7 @@ class SignInActivity : AppCompatActivity() {
 
             override fun onVerificationFailed(e: FirebaseException) {
                 Toast.makeText(this@SignInActivity, "Verification failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.d("Verification resend failed: ", "${e.message}")
             }
 
             override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {

@@ -22,7 +22,7 @@ class PhoneAuthViewModel(private val repository: PhoneAuthRepository) : ViewMode
     fun resendVerificationCode(
         phoneNumber: String,
         activity: Activity,
-        callbacks: OnVerificationStateChangedCallbacks
+        callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     ) {
         repository.resendVerificationCode(phoneNumber, activity, callbacks)
     }

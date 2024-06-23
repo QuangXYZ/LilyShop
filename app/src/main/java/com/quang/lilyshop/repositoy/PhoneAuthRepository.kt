@@ -40,6 +40,7 @@ class PhoneAuthRepository(private val auth: FirebaseAuth) {
     ) {
         resendToken?.let {
             val options = PhoneAuthOptions.newBuilder(auth)
+                .setPhoneNumber(phoneNumber)
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setActivity(activity)
                 .setCallbacks(callbacks)
