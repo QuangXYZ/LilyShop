@@ -54,10 +54,10 @@ class CheckoutActivity : BaseActivity() {
             finish()
         }
         binding.changeAddress.setOnClickListener {
-            startActivity(Intent(this, AddressSelectionActivity::class.java))
+            startActivity(Intent(this, AddressSelectActivity::class.java))
         }
         binding.layoutAddress.setOnClickListener {
-            startActivity(Intent(this, AddressSelectionActivity::class.java))
+            startActivity(Intent(this, AddressSelectActivity::class.java))
         }
     }
 

@@ -8,6 +8,6 @@ class AddressModel(
     val ward: String = "",
     val address:String = "",
     val label:String = "",
-    val isDefault: Boolean = false,
+    val default: Boolean = false,
 ) {
 }

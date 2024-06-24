@@ -73,15 +73,16 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_bkg"
-                android:hint="Full Number"
+                android:hint="Full Name"
                 android:imeOptions="actionNext"
 
-                android:textSize="14sp"
                 android:inputType="text"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,14 +99,15 @@
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_bkg"
                 android:hint="Phone Number"
-                android:inputType="number"
-                android:textSize="14sp"
                 android:imeOptions="actionDone"
-                android:maxLines="1" />
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,9 +138,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_bkg"
                 android:focusable="false"
-                android:textSize="14sp"
                 android:hint="City, District, Ward"
-                 />
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,26 +161,26 @@
                 android:focusable="false"
                 android:hint="Street Name, Building, House No."
                 android:inputType="number"
-                android:textSize="14sp"
+                android:maxLines="1"
 
-                android:maxLines="1" />
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/imgLayout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:cardCornerRadius="20dp"
             android:visibility="gone"
-            android:layout_height="wrap_content">
+            app:cardCornerRadius="20dp">
+
             <ImageView
                 android:id="@+id/imgMap"
                 android:layout_width="match_parent"
-                android:scaleType="center"
-                android:layout_height="104dp"/>
+                android:layout_height="104dp"
+                android:scaleType="center" />
         </com.google.android.material.card.MaterialCardView>
-
 
 
         <TextView
@@ -210,10 +211,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/lightGrey"
-                app:strokeColor="@color/lightGrey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/lightGrey">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -232,12 +233,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                app:strokeColor="@color/lightGrey"
-
                 android:backgroundTint="@color/lightGrey"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/office"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/lightGrey">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -279,10 +280,11 @@
                 android:id="@+id/switcher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:checked="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@color/white"
                 app:switcher_icon_color="@color/switcher_icon_color"
                 app:switcher_off_color="@color/switcher_off_color"
                 app:switcher_on_color="@color/switcher_on_color" />
@@ -291,16 +293,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/checkoutBtn"
+            android:id="@+id/submitBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:background="@drawable/purple_button_background"
             android:text="Submit"
-            android:layout_marginTop="16dp"
-            android:enabled="false"
             android:textColor="@color/white"
-            android:textStyle="bold"
-           />
+            android:textStyle="bold" />
     </LinearLayout>
 
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
-    app:strokeColor="@color/lightGrey"
     android:layout_marginBottom="8dp"
-    android:elevation="2dp">
+    android:backgroundTint="@color/white"
+    android:elevation="2dp"
+    app:strokeColor="@color/lightGrey">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,11 +18,11 @@
         <ImageView
             android:layout_width="66dp"
             android:layout_height="66dp"
-            android:padding="4dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/location"/>
-<!--            android:padding="8dp"-->
-<!--            android:background="@drawable/grey_background"-->
+            android:padding="4dp"
+            android:src="@drawable/location" />
+        <!--            android:padding="8dp"-->
+        <!--            android:background="@drawable/grey_background"-->
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,21 +35,38 @@
                 android:layout_width="28dp"
                 android:layout_height="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/grey_background"
-                android:paddingStart="4dp"
+                android:paddingStart="8dp"
                 android:paddingTop="2dp"
-                android:paddingEnd="4dp"
+                android:paddingEnd="8dp"
                 android:paddingBottom="2dp"
                 android:text="Main house"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/defaultAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/red_background"
+                android:paddingStart="8dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="2dp"
+                android:text="Default"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/label"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -107,22 +124,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
+                    android:paddingStart="8dp"
                     android:paddingTop="4dp"
                     android:paddingEnd="8dp"
                     android:paddingBottom="4dp"
-                    android:paddingStart="8dp"
                     android:text="Edit Address"
-                    android:textStyle="bold"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="8dp"
-                android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView2"
                 app:layout_constraintTop_toBottomOf="@+id/city">
 
@@ -130,12 +147,13 @@
                     android:id="@+id/delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
                     android:paddingTop="4dp"
                     android:paddingEnd="8dp"
                     android:paddingBottom="4dp"
-                    android:paddingStart="8dp"                    android:text="Delete Address"
-                    android:textStyle="bold"
-                    android:textSize="12sp" />
+                    android:text="Delete Address"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
             </com.google.android.material.card.MaterialCardView>
 

@@ -29,7 +29,7 @@
             android:name=".activity.NewAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.AddressSelectionActivity"
+            android:name=".activity.AddressSelectActivity"
             android:exported="false" />
         <activity
             android:name=".activity.CheckoutActivity"

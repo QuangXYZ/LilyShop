@@ -10,12 +10,16 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
+import androidx.lifecycle.Observer
+import com.quang.lilyshop.Model.AddressModel
 import com.quang.lilyshop.R
+import com.quang.lilyshop.ViewModel.NewAddressViewModel
 import com.quang.lilyshop.databinding.ActivityNewAddressBinding
 
 
 class NewAddressActivity : BaseActivity() {
     private lateinit var binding: ActivityNewAddressBinding
+    private lateinit var viewModel: NewAddressViewModel
     private var home = 0
     private var office = 0
 
@@ -61,6 +65,11 @@ class NewAddressActivity : BaseActivity() {
     }
 
     private fun init() {
+        viewModel = NewAddressViewModel()
+        viewModel.error.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        })
+
 
     }
 
@@ -101,6 +110,44 @@ class NewAddressActivity : BaseActivity() {
             }
             selectLocationMap.launch(intent)
         }
+
+        binding.submitBtn.setOnClickListener {
+            if (binding.name.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (binding.phone.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please enter your phone number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (binding.chooseProvince.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please select your city", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (binding.chooseStreet.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please select your street", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (home == 0 && office == 0) {
+                Toast.makeText(this, "Please select your label", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+            val address:AddressModel = AddressModel(
+                binding.name.text.toString(),
+                binding.phone.text.toString(),
+                province.toString(),
+                district.toString(),
+                ward.toString(),
+                binding.chooseStreet.text.toString(),
+                if (home == 1)  "Home" else "Office",
+                binding.switcher.isChecked
+            )
+            viewModel.saveUserAddress(address)
+        }
+
+
 
     }
 

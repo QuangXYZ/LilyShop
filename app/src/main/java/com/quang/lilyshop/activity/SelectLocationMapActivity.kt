@@ -120,6 +120,10 @@ class SelectLocationMapActivity : BaseActivity(), OnMapReadyCallback {
 //                return@setOnClickListener
 //            }
 
+            if (addressList.isEmpty()) {
+                Toast.makeText(this, "Please select your address", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             mMap.snapshot { bitmap ->
                 val imageUri = saveImage(bitmap!!)
                 val resultIntent = Intent().apply {
