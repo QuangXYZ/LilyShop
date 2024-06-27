@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class UserRepository @Inject constructor(private val database : DatabaseReference) {
 
     fun checkUserExits(uid: String, callback: (Boolean) -> Unit) {
-        database.child("users2").child(uid).addListenerForSingleValueEvent(object  : ValueEventListener{
+        database.child("users").child(uid).addListenerForSingleValueEvent(object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 callback(snapshot.exists())
             }
@@ -25,7 +25,7 @@ class UserRepository @Inject constructor(private val database : DatabaseReferenc
     }
 
     fun createUser(user: User, onComplete: (Boolean) -> Unit) {
-        database.child("users2").child(user.uid).setValue(user)
+        database.child("users").child(user.uid).setValue(user)
             .addOnCompleteListener { task ->
                 onComplete(task.isSuccessful)
             }
