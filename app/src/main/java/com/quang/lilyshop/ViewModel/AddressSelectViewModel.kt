@@ -2,10 +2,13 @@ package com.quang.lilyshop.ViewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.quang.lilyshop.Model.AddressModel
 import com.quang.lilyshop.repositoy.AddressRepository
+import kotlinx.coroutines.launch
 
-class AddressSelectViewModel {
+class AddressSelectViewModel: ViewModel() {
     private val repository = AddressRepository()
     private val _address = MutableLiveData<List<AddressModel>>()
     val address: LiveData<List<AddressModel>> get() = _address
@@ -18,11 +21,13 @@ class AddressSelectViewModel {
     }
 
     fun getUserAddress() {
-        repository.getUserAddress({ address ->
-            _address.value = address
-        }, { e ->
-            _error.value = e.message
-        })
+        viewModelScope.launch {
+            repository.getUserAddress({ address ->
+                _address.value = address
+            }, { e ->
+                _error.value = e.message
+            })
+        }
     }
 
 }

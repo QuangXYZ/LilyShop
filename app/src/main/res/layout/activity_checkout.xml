@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:orientation="vertical"
-            android:paddingBottom="120dp"
+            android:paddingBottom="160dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -109,27 +109,30 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/addressName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nguyen Thanh Quang | 0326178240"
+                    tools:text="Nguyen Thanh Quang | 0326178240"
                     android:textColor="@color/darkGrey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/addressStreet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="273 An Dương Vương"
+                    tools:text="273 An Dương Vương"
                     android:textColor="@color/darkGrey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/addressProvince"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phường 3, Quận 5, TP Hồ Chí Minh"
+                    tools:text="Phường 3, Quận 5, TP Hồ Chí Minh"
                     android:textColor="@color/darkGrey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -210,6 +213,7 @@
                 android:layout_marginTop="8dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/paymentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp">
@@ -248,11 +252,12 @@
 
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/paymentBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/white"
-                app:strokeColor="@color/purple"
+                app:strokeColor="@color/darkGrey"
                 app:strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -295,7 +300,7 @@
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -461,7 +466,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

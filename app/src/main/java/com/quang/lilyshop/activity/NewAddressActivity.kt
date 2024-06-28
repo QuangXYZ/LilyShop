@@ -135,6 +135,7 @@ class NewAddressActivity : BaseActivity() {
                 return@setOnClickListener
             }
             val address:AddressModel = AddressModel(
+                "",
                 binding.name.text.toString(),
                 binding.phone.text.toString(),
                 province.toString(),
@@ -145,6 +146,7 @@ class NewAddressActivity : BaseActivity() {
                 binding.switcher.isChecked
             )
             viewModel.saveUserAddress(address)
+            finish()
         }
 
 

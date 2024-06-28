@@ -7,7 +7,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.quang.lilyshop.Model.AddressModel
-import com.quang.lilyshop.networkService.ApiService
 import com.quang.lilyshop.networkService.RetrofitClient
 
 class AddressRepository {
@@ -26,7 +25,8 @@ class AddressRepository {
         val userId = auth.currentUser?.uid ?: return  // Lấy ID của người dùng hiện tại
         val addressesRef = database.child("users").child(userId).child("address")
 
-        addressesRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+        addressesRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val addresses = mutableListOf<AddressModel>()
                 for (snapshot in dataSnapshot.children) {
@@ -47,7 +47,10 @@ class AddressRepository {
             val userId = auth.currentUser?.uid ?: return  // Lấy ID của người dùng hiện tại
             val addressesRef = database.child("users").child(userId).child("address")
 
-            if (address.default) {
+        val key: String? = addressesRef.push().key
+        address.id = key!!
+
+        if (address.default) {
                 // Nếu địa chỉ mới là mặc định, cập nhật tất cả các địa chỉ hiện tại thành không mặc định
                 addressesRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -78,6 +81,25 @@ class AddressRepository {
         }
 
 
+
+    fun getDefaultAddress(onSuccess: (AddressModel?) -> Unit, onFailure: (Exception) -> Unit) {
+        val userId = auth.currentUser?.uid ?: return
+        val addressesRef = database.child("users").child(userId).child("address")
+        addressesRef.orderByChild("default").equalTo(true).limitToFirst(1).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var defaultAddress: AddressModel? = null
+                for (snapshot in dataSnapshot.children) {
+                    defaultAddress = snapshot.getValue(AddressModel::class.java)
+                    break
+                }
+                onSuccess(defaultAddress)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                onFailure(databaseError.toException())
+            }
+        })
+    }
 
 }
 

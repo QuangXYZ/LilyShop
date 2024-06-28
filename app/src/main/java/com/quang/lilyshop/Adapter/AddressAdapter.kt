@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.quang.lilyshop.Helper.OnItemClickListener
 import com.quang.lilyshop.Model.AddressModel
 import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.SingleAddressBinding
 
-class AddressAdapter(val address: MutableList<AddressModel>) :
+class AddressAdapter(val address: MutableList<AddressModel>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
 
     private lateinit var context: Context
@@ -19,7 +20,7 @@ class AddressAdapter(val address: MutableList<AddressModel>) :
         context = parent.context
         val binding =
             SingleAddressBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,13 +51,14 @@ class AddressAdapter(val address: MutableList<AddressModel>) :
             notifyItemChanged(lastSelectedPosition)
             notifyItemChanged(selectedPosition)
             lastSelectedPosition = selectedPosition
+            listener.onItemClick(position)
         }
         holder.binding.layout.setOnClickListener {
             selectedPosition = holder.absoluteAdapterPosition
             notifyItemChanged(lastSelectedPosition)
             notifyItemChanged(selectedPosition)
             lastSelectedPosition = selectedPosition
-
+            listener.onItemClick(position)
         }
 
     }
@@ -64,8 +66,23 @@ class AddressAdapter(val address: MutableList<AddressModel>) :
 
     override fun getItemCount(): Int = address.size
 
-    class ViewHolder(val binding: SingleAddressBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: SingleAddressBinding, listener: OnItemClickListener) : RecyclerView.ViewHolder(binding.root) {
+//        private val itemClickListener = listener
 
+//        init {
+//            binding.root.setOnClickListener(this)
+//        }
+//
+//        override fun onClick(v: View?) {
+//            itemClickListener.onItemClick(absoluteAdapterPosition)
+//        }
+    }
+
+    fun select(index: Int) {
+        selectedPosition = index
+        notifyItemChanged(lastSelectedPosition)
+        notifyItemChanged(selectedPosition)
+        lastSelectedPosition = selectedPosition
     }
 
 
