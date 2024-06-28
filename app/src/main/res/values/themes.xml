@@ -11,6 +11,9 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:windowTranslucentNavigation">true</item>
 
+
+
+
     </style>
   <!-- Base application theme. -->
     <style name="Base.Theme.LilyShop" parent="Theme.Material3.DayNight.NoActionBar">
@@ -22,5 +25,8 @@
         <item name="boxStrokeColor">#DAD8D8</item>
         <item name="boxStrokeWidth">2dp</item>
     </style>
+
+
+
 
 </resources>

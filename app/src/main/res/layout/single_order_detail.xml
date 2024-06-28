@@ -10,7 +10,7 @@
         android:id="@+id/imageView"
         android:layout_width="78dp"
         android:layout_height="78dp"
-        android:background="@color/lightGrey"
+        android:background="@drawable/grey_background"
         android:src="@drawable/watch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
