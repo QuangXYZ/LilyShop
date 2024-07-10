@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LilyShop"
         tools:targetApi="31">
         <activity
+            android:name=".activity.FilterActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.OrderSuccessActivity"
             android:exported="false" />
         <activity
