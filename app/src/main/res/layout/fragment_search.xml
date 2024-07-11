@@ -3,18 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.Fragment.SearchFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchText"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:textColor="@color/darkGrey"
-        android:textSize="16sp"
+        android:layout_marginTop="32dp"
+        app:endIconMode="custom"
+        android:focusableInTouchMode="true"
+        app:boxBackgroundColor="@color/white"
+        app:cursorColor="@color/darkGrey"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:endIconDrawable="@drawable/filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/search">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_bkg"
+            android:hint="Search any shirt"
+
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/searchText" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

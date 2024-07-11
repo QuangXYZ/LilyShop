@@ -143,6 +143,7 @@ class CheckoutActivity : BaseActivity() {
         val order = OrderModel(
             "", "", managementCart.getListCart(), delivery, tax, total
         )
+        managementCart.clearListCart()
 
         viewModel.saveOrder(order)
     }

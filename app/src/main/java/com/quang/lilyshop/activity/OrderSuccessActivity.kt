@@ -17,6 +17,14 @@ class OrderSuccessActivity : BaseActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+        binding.orderBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+        binding.orderLayout.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
 }
