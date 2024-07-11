@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 app:backgroundColor="@color/purple"
-                app:cornerRadius="10dp"
+                app:cornerRadius="20dp"
                 app:corners="all"
                 app:menu="@menu/bottom_navigation_menu" />
 
