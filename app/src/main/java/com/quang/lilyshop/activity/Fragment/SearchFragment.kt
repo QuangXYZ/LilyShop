@@ -74,22 +74,8 @@ class SearchFragment : Fragment() {
             }
         })
         binding.searchText.setStartIconOnClickListener {
-            if (isFilterOpen) {
 
-                childFragmentManager.beginTransaction().apply {
-                    hide(filterFragment!!)
-                    activeFragment?.let { it1 -> show(it1) }
-                }.commit()
-                isFilterOpen = false
-            }
-            else {
-                childFragmentManager.beginTransaction().apply {
-                    hide(activeFragment!!)
-                    show(recentFragment)
-                }.commit()
-                activeFragment = recentFragment
-            }
-            binding.searchText.setStartIconDrawable(R.drawable.search)
+            recreateRecentFragment()
         }
 
 
@@ -114,6 +100,26 @@ class SearchFragment : Fragment() {
         }
     }
 
+
+
+    private fun recreateRecentFragment() {
+        // Xóa bỏ recentFragment hiện tại
+        childFragmentManager.beginTransaction().remove(recentFragment).commitNow()
+
+        // Tạo lại recentFragment
+        recentFragment = SearchRecentFragment()
+        activeFragment = recentFragment
+
+        // Thêm và hiển thị lại recentFragment mới tạo
+        childFragmentManager.beginTransaction().apply {
+            add(binding.contentFrame.id, recentFragment, "recentFragment").show(recentFragment)
+            hide(filterFragment)
+            hide(searchResultFragment)
+        }.commit()
+
+        // Cập nhật giao diện người dùng
+        binding.searchText.setStartIconDrawable(R.drawable.search)
+    }
 
 
 
