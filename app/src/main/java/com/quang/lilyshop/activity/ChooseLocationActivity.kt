@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -16,13 +15,9 @@ import com.lriccardo.timelineview.TimelineDecorator
 import com.quang.lilyshop.Adapter.AddressLineAdapter
 import com.quang.lilyshop.Adapter.DistrictAdapter
 import com.quang.lilyshop.Adapter.ProvinceAdapter
-import com.quang.lilyshop.Adapter.SliderAdapter
 import com.quang.lilyshop.Adapter.WardAdapter
 import com.quang.lilyshop.Helper.OnItemClickListener
-import com.quang.lilyshop.Model.BrandModel
-import com.quang.lilyshop.Model.DistrictModel
 import com.quang.lilyshop.Model.ProvinceModel
-import com.quang.lilyshop.Model.WardModel
 import com.quang.lilyshop.ViewModel.ChooseLocationViewModel
 import com.quang.lilyshop.databinding.ActivityChooseLocationBinding
 import com.quang.lilyshop.networkService.ApiState
