@@ -11,7 +11,16 @@ class ManagementHistory(val context: Context) {
 
     fun addRecent(item: String) {
         var listHistory = getListHistory()
-        listHistory.add(item)
+
+        val existAlready = listHistory.any { it == item }
+        val index = listHistory.indexOfFirst {  it == item}
+
+        if (existAlready) {
+            listHistory.removeAt(index)
+            listHistory.add(0, item)
+        } else {
+            listHistory.add(0,item)
+        }
         tinyDB.putListString(TAG, listHistory)
     }
 

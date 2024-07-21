@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.Fragment.SearchFragment">
 
@@ -17,6 +16,8 @@
         app:endIconMode="custom"
         android:focusableInTouchMode="true"
         app:boxBackgroundColor="@color/white"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:cursorColor="@color/darkGrey"
         app:hintAnimationEnabled="false"
         app:hintEnabled="false"
