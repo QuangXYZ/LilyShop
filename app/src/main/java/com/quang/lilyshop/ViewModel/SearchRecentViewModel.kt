@@ -14,6 +14,8 @@ class SearchRecentViewModel (application: Application) : AndroidViewModel(applic
     private val managementHistory = ManagementHistory(application)
 
 
+
+
     init {
         getRecentSearch()
     }
@@ -26,10 +28,7 @@ class SearchRecentViewModel (application: Application) : AndroidViewModel(applic
         managementHistory.clearHistory()
         history.value = managementHistory.getListHistory()
     }
-    fun deleteRecentSearch(position:Int) {
-        managementHistory.deleteItem(ArrayList(histories.value),position)
-        history.value = managementHistory.getListHistory()
-    }
+
 
 
 }

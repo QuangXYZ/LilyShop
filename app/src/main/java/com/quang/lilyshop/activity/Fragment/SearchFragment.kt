@@ -14,7 +14,7 @@ import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.FragmentSearchBinding
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(),SearchRecentFragment.OnHistoryItemClickListener {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var searchResultFragment: SearchResultFragment
     private lateinit var filterFragment: FilterFragment
@@ -22,6 +22,7 @@ class SearchFragment : Fragment() {
     private var activeFragment: Fragment? = null
     private var isFilterOpen = false
     private lateinit var managementHistory: ManagementHistory
+
 
 
 
@@ -57,21 +58,7 @@ class SearchFragment : Fragment() {
 
     private fun settingUpListener() {
         binding.searchText.setEndIconOnClickListener(View.OnClickListener {
-            if (isFilterOpen) {
-                childFragmentManager.beginTransaction().apply {
-                    hide(filterFragment!!)
-                    activeFragment?.let { it1 -> show(it1) }
-                }.commit()
-                isFilterOpen = false
-            }
-            else {
-                childFragmentManager.beginTransaction().apply {
-                    hide(activeFragment!!)
-                    show(filterFragment)
-                }.commit()
-                isFilterOpen = true
-
-            }
+            toggleFilter()
         })
         binding.searchText.setStartIconOnClickListener {
 
@@ -83,15 +70,7 @@ class SearchFragment : Fragment() {
         binding.searchContent.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-                managementHistory.addRecent(binding.searchContent.text.toString())
-
-                childFragmentManager.beginTransaction().apply {
-                    hide(activeFragment!!)
-                    hide(filterFragment)
-                    show(searchResultFragment)
-                }.commit()
-                activeFragment = searchResultFragment
-                binding.searchText.setStartIconDrawable(R.drawable.back)
+                performSearch(binding.searchContent.text.toString())
 
                 true
             } else {
@@ -121,6 +100,41 @@ class SearchFragment : Fragment() {
         binding.searchText.setStartIconDrawable(R.drawable.search)
     }
 
+    private fun toggleFilter() {
+        childFragmentManager.beginTransaction().apply {
+            if (isFilterOpen) {
+                hide(filterFragment)
+                activeFragment?.let { show(it) }
+            } else {
+                hide(activeFragment!!)
+                show(filterFragment)
+            }
+        }.commit()
+        isFilterOpen = !isFilterOpen
+    }
+
+
+
+
+    private fun performSearch(query: String) {
+        managementHistory.addRecent(query)
+
+        childFragmentManager.beginTransaction().apply {
+            hide(activeFragment!!)
+            hide(filterFragment)
+            show(searchResultFragment)
+        }.commit()
+        activeFragment = searchResultFragment
+        binding.searchText.setStartIconDrawable(R.drawable.back)
+
+        // Truyền query cho searchResultFragment để xử lý kết quả tìm kiếm
+        searchResultFragment.search(query)
+    }
+
+    override fun onHistoryItemClicked(query: String) {
+        binding.searchContent.setText(query)
+        performSearch(query)
+    }
 
 
 }
