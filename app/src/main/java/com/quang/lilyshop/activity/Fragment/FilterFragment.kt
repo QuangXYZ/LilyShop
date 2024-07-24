@@ -5,56 +5,63 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.material.slider.RangeSlider
+import com.quang.lilyshop.Adapter.BrandAdapter
+import com.quang.lilyshop.Adapter.TextItemAdapter
 import com.quang.lilyshop.R
+import com.quang.lilyshop.databinding.FragmentFilterBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FilterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FilterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentFilterBinding
+    private lateinit var brandAdapter: TextItemAdapter
+    private lateinit var categoryAdapter: TextItemAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_filter, container, false)
+        binding = FragmentFilterBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FilterFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FilterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+        initRecyclerView()
     }
+
+
+    private fun initRecyclerView() {
+        brandAdapter = TextItemAdapter(arrayListOf("Brand adasd1", "Branaaadasd 2", "aaBrand 3", "and 4", "Brand a5","Braaand 2", "Brand 3a", "Br 4", "Brand 5"))
+        binding.listBrand.layoutManager =  FlexboxLayoutManager(requireContext())
+        binding.listBrand.adapter = brandAdapter
+        binding.listBrand.isNestedScrollingEnabled = false
+
+        binding.listCategory.layoutManager =  FlexboxLayoutManager(requireContext())
+        categoryAdapter = TextItemAdapter(arrayListOf("Category 1", "Category 2", "Category 3", "Category 4", "Category 5"))
+        binding.listCategory.adapter = categoryAdapter
+        binding.listBrand.isNestedScrollingEnabled = false
+
+
+
+    }
+
+    private fun init() {
+        binding.slider.addOnChangeListener { rangeSlider, value, fromUser ->
+            binding.minPrice.text = "${rangeSlider.values[0].toInt()}$"
+            binding.maxPrice.text = "${rangeSlider.values[1].toInt()}$"
+        }
+
+
+    }
+
+
 }

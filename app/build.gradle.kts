@@ -73,6 +73,8 @@ dependencies {
     implementation ("com.github.lriccardo:TimelineView:1.1.2")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation("io.github.lapism:search:2.0.1")
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+
+
 
 }

@@ -89,23 +89,30 @@ class SearchFragment : Fragment(),SearchRecentFragment.OnHistoryItemClickListene
         recentFragment = SearchRecentFragment()
         activeFragment = recentFragment
 
-        // Thêm và hiển thị lại recentFragment mới tạo
         childFragmentManager.beginTransaction().apply {
+
             add(binding.contentFrame.id, recentFragment, "recentFragment").show(recentFragment)
             hide(filterFragment)
             hide(searchResultFragment)
+
         }.commit()
 
-        // Cập nhật giao diện người dùng
         binding.searchText.setStartIconDrawable(R.drawable.search)
     }
 
     private fun toggleFilter() {
         childFragmentManager.beginTransaction().apply {
             if (isFilterOpen) {
+
+                filterFragment.view?.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_slide_out_right))
+//                activeFragment?.view?.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_slide_in_left))
+
                 hide(filterFragment)
                 activeFragment?.let { show(it) }
             } else {
+                filterFragment.view?.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_slide_in_left))
+//                activeFragment?.view?.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_slide_out_left))
+
                 hide(activeFragment!!)
                 show(filterFragment)
             }
@@ -120,6 +127,7 @@ class SearchFragment : Fragment(),SearchRecentFragment.OnHistoryItemClickListene
         managementHistory.addRecent(query)
 
         childFragmentManager.beginTransaction().apply {
+            searchResultFragment.view?.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.anim_slide_in_left))
             hide(activeFragment!!)
             hide(filterFragment)
             show(searchResultFragment)
@@ -127,7 +135,6 @@ class SearchFragment : Fragment(),SearchRecentFragment.OnHistoryItemClickListene
         activeFragment = searchResultFragment
         binding.searchText.setStartIconDrawable(R.drawable.back)
 
-        // Truyền query cho searchResultFragment để xử lý kết quả tìm kiếm
         searchResultFragment.search(query)
     }
 
