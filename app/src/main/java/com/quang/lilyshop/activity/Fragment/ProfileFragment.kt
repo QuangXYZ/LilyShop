@@ -1,19 +1,18 @@
 package com.quang.lilyshop.activity.Fragment
 
-import android.content.Intent
+import android.R
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.google.firebase.Firebase
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-import com.quang.lilyshop.R
-import com.quang.lilyshop.activity.MainActivity
-import com.quang.lilyshop.activity.SignInActivity
 import com.quang.lilyshop.databinding.FragmentProfileBinding
+
 
 class ProfileFragment() : Fragment() {
 
@@ -35,15 +34,27 @@ class ProfileFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        init()
         settingUpListeners()
+
+    }
+
+    private fun init() {
+
+
+
+
+
+
     }
 
     private fun settingUpListeners() {
-        binding.signOut.setOnClickListener(View.OnClickListener {
-            Firebase.auth.signOut()
-            Toast.makeText(requireContext(), "Sign out success!", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(requireContext(), SignInActivity::class.java))
-        })
+//        binding.signOut.setOnClickListener(View.OnClickListener {
+//            Firebase.auth.signOut()
+//            Toast.makeText(requireContext(), "Sign out success!", Toast.LENGTH_SHORT).show()
+//            startActivity(Intent(requireContext(), SignInActivity::class.java))
+//        })
+
+
     }
 }
