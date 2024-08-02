@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.quang.lilyshop.R
 
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -42,6 +43,11 @@ class ProfileFragment() : Fragment() {
     }
 
     private fun init() {
+
+        binding.name.text = FirebaseAuth.getInstance().currentUser?.displayName ?: "Guest"
+        Glide.with(this)
+            .load(FirebaseAuth.getInstance().currentUser?.photoUrl)
+            .into(binding.avatar)
 
 
 

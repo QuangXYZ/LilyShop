@@ -5,5 +5,10 @@
     <string name="intro_signin">Already have an account<font color="#6033ba"> Sign In </font> </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="web_client_id">706789800154-497g1svh2kmarogg0b6krts52djqgg9o.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">1458305761317748</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">a14997bf31ce38fa2c83456cbadbae21</string>
 
 </resources>
