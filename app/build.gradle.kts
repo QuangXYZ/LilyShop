@@ -25,7 +25,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -59,7 +62,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation ("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
@@ -69,17 +72,17 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
-    implementation ("com.google.code.gson:gson:2.11.0")
-    implementation ("io.github.bitvale:switcher:1.1.2")
-    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("io.github.bitvale:switcher:1.1.2")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation ("com.github.lriccardo:TimelineView:1.1.2")
+    implementation("com.github.lriccardo:TimelineView:1.1.2")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation ("com.google.android.flexbox:flexbox:3.0.0")
-    implementation ("com.facebook.android:facebook-android-sdk:[8,9)")
-
-
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+    implementation("com.facebook.android:facebook-android-sdk:[8,9)")
+    implementation("com.hbb20:ccp:2.7.0")
+    implementation("androidx.browser:browser:1.8.0")
 
 
 }

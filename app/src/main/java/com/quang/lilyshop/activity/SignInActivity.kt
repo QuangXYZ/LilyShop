@@ -1,15 +1,24 @@
 package com.quang.lilyshop.activity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -20,7 +29,7 @@ import com.quang.lilyshop.ViewModel.PhoneAuthViewModelFactory
 import com.quang.lilyshop.databinding.ActivitySignInBinding
 import com.quang.lilyshop.repositoy.PhoneAuthRepository
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : BaseActivity() {
     private val viewModel: PhoneAuthViewModel by viewModels {
         PhoneAuthViewModelFactory(PhoneAuthRepository(FirebaseAuth.getInstance()))
     }
@@ -30,69 +39,71 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         settingUpListener()
+
+
     }
 
     private fun settingUpListener() {
 
-        binding.sendOTPButton.setOnClickListener{
-            val phoneNumber = binding.phoneEditText.text.toString()
+//        binding.sendOTPButton.setOnClickListener {
+//            val phoneNumber = binding.phoneEditText.text.toString()
+//
+//            binding.sendOTPButton.setBackgroundResource(R.drawable.textview_background2)
+//            // Thay đổi màu nền thành màu tím sau vài giây
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                binding.sendOTPButton.setBackgroundResource(R.drawable.textview_background)
+//            }, 100) // 2000 milliseconds = 1 giây
+//
+//            if (phoneNumber.isEmpty()) {
+//                Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
+//            sendVerificationCode("+84$phoneNumber")
+//        }
+//
+//        binding.resendOTPButton.setOnClickListener {
+//            val phoneNumber = binding.phoneEditText.text.toString()
+//
+//            binding.resendOTPButton.setBackgroundResource(R.drawable.textview_background2)
+//            // Thay đổi màu nền thành màu tím sau vài giây
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                binding.resendOTPButton.setBackgroundResource(R.drawable.textview_background)
+//            }, 100) // 2000 milliseconds = 1 giây
+//
+//            if (phoneNumber.isEmpty()) {
+//                Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
+//
+//            resendVerificationCode("+84$phoneNumber")
+//        }
 
-            binding.sendOTPButton.setBackgroundResource(R.drawable.textview_background2)
-            // Thay đổi màu nền thành màu tím sau vài giây
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.sendOTPButton.setBackgroundResource(R.drawable.textview_background)
-            }, 100) // 2000 milliseconds = 1 giây
-
-            if (phoneNumber.isEmpty()){
+        binding.signInButton.setOnClickListener {
+//            val otp = binding.OTPEditText.text.toString()
+//            if (otp.isEmpty()) {
+//                Toast.makeText(this, "Please Enter OTP", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
+//            verifyCode(otp)
+            binding.progressBar.visibility = View.VISIBLE
+            binding.signInButton.isEnabled = false
+            if (binding.phoneEditText.text?.isEmpty() == true) {
                 Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
+                binding.signInButton.isEnabled = true
                 return@setOnClickListener
             }
-            sendVerificationCode("+84$phoneNumber")
+            val code = binding.countryCodePicker.selectedCountryCode
+            val phone = binding.phoneEditText.text
+            sendVerificationCode("+$code$phone")
+            Toast.makeText(this, "$code", Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
+            binding.signInButton.isEnabled = true
+//            startActivity(Intent(this, OtpVerifyActivity::class.java))
         }
 
-        binding.resendOTPButton.setOnClickListener{
-            val phoneNumber = binding.phoneEditText.text.toString()
 
-            binding.resendOTPButton.setBackgroundResource(R.drawable.textview_background2)
-            // Thay đổi màu nền thành màu tím sau vài giây
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.resendOTPButton.setBackgroundResource(R.drawable.textview_background)
-            }, 100) // 2000 milliseconds = 1 giây
-
-            if (phoneNumber.isEmpty()){
-                Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            resendVerificationCode("+84$phoneNumber")
-        }
-
-        binding.signInButton.setOnClickListener{
-            val otp = binding.OTPEditText.text.toString()
-            if (otp.isEmpty()){
-                Toast.makeText(this, "Please Enter OTP", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            verifyCode(otp)
-        }
-
-        binding.googleLinearLayout.setOnClickListener{
-            binding.googleLinearLayout.setBackgroundResource(R.drawable.edittext_background2)
-            // Thay đổi màu nền thành màu tím sau vài giây
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.googleLinearLayout.setBackgroundResource(R.drawable.edittext_background)
-            }, 100)
-        }
-
-        binding.facebookLinearLayout.setOnClickListener{
-            binding.facebookLinearLayout.setBackgroundResource(R.drawable.edittext_background2)
-            // Thay đổi màu nền thành màu tím sau vài giây
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.facebookLinearLayout.setBackgroundResource(R.drawable.edittext_background)
-            }, 100)
-        }
     }
 
     private fun sendVerificationCode(phoneNumber: String) {
@@ -102,14 +113,21 @@ class SignInActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(this@SignInActivity, "Verification failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    "Verification failed: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 Log.d("Verification failed: ", "${e.message}")
             }
 
-            override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
                 this@SignInActivity.verificationId = verificationId
                 viewModel.setResendToken(token)
-                binding.resendOTPButton.isEnabled = true
+//                binding.resendOTPButton.isEnabled = true
             }
         }
 
@@ -123,10 +141,17 @@ class SignInActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(this@SignInActivity, "Verification failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    "Verification failed: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
-            override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
                 this@SignInActivity.verificationId = verificationId
                 viewModel.setResendToken(token)
             }
@@ -148,4 +173,8 @@ class SignInActivity : AppCompatActivity() {
             Toast.makeText(this, "Sign in failed: ${it.message}", Toast.LENGTH_SHORT).show()
         })
     }
+
+
+
+
 }
