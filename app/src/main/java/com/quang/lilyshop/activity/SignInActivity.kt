@@ -98,18 +98,20 @@ class SignInActivity : BaseActivity() {
             val phone = binding.phoneEditText.text
             sendVerificationCode("+$code$phone")
             Toast.makeText(this, "$code", Toast.LENGTH_SHORT).show()
-            binding.progressBar.visibility = View.GONE
-            binding.signInButton.isEnabled = true
-//            startActivity(Intent(this, OtpVerifyActivity::class.java))
+
         }
 
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
 
     }
 
     private fun sendVerificationCode(phoneNumber: String) {
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-//                signInWithPhoneAuthCredential(credential)
+                signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -118,6 +120,8 @@ class SignInActivity : BaseActivity() {
                     "Verification failed: ${e.message}",
                     Toast.LENGTH_SHORT
                 ).show()
+                binding.progressBar.visibility = View.GONE
+                binding.signInButton.isEnabled = true
                 Log.d("Verification failed: ", "${e.message}")
             }
 
@@ -127,7 +131,14 @@ class SignInActivity : BaseActivity() {
             ) {
                 this@SignInActivity.verificationId = verificationId
                 viewModel.setResendToken(token)
-//                binding.resendOTPButton.isEnabled = true
+                binding.progressBar.visibility = View.GONE
+                binding.signInButton.isEnabled = true
+
+                val intent = Intent(this@SignInActivity, OtpVerifyActivity::class.java)
+                intent.putExtra("verificationId", verificationId)
+                intent.putExtra("phoneNumber", phoneNumber)
+                intent.putExtra("resendToken", token)
+                startActivity(intent)
             }
         }
 

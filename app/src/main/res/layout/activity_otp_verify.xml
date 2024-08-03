@@ -15,7 +15,7 @@
         android:background="#0c1c2c">
 
         <ImageView
-            android:id="@+id/imageView20"
+            android:id="@+id/backBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+            app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
         <TextView
             android:id="@+id/textView1"
@@ -101,6 +101,7 @@
                         android:textColor="@color/text_color"
                         />
                     <TextView
+                        android:id="@+id/phoneNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="To confirm your phone number, please enter the otp we sent to (+84) 123123123"
@@ -211,9 +212,15 @@
 
                 </LinearLayout>
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:visibility="visible" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/sign_in_button"
+                    android:id="@+id/confirmBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -227,15 +234,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
-                <ProgressBar
-                    android:id="@+id/progressbar_sign_in"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:scaleX=".5"
-                    android:scaleY=".5"
-                    android:visibility="gone" />
+
 
 
             </LinearLayout>
