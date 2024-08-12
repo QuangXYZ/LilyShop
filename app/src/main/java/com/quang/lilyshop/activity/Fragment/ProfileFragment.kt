@@ -14,6 +14,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.quang.lilyshop.activity.IntroActivity
+import com.quang.lilyshop.activity.OrderManagerActivity
 import com.quang.lilyshop.databinding.FragmentProfileBinding
 
 
@@ -44,10 +45,16 @@ class ProfileFragment() : Fragment() {
 
     private fun init() {
 
+
         binding.name.text = FirebaseAuth.getInstance().currentUser?.displayName ?: "Guest"
-        Glide.with(this)
-            .load(FirebaseAuth.getInstance().currentUser?.photoUrl)
-            .into(binding.avatar)
+        if (FirebaseAuth.getInstance().currentUser?.photoUrl != null) {
+            Glide.with(this)
+                .load(FirebaseAuth.getInstance().currentUser?.photoUrl)
+                .into(binding.avatar)
+        }
+        else {
+            binding.avatar.setImageResource(R.drawable.user_default)
+        }
 
 
 
@@ -69,6 +76,10 @@ class ProfileFragment() : Fragment() {
                     requireActivity().overridePendingTransition(R.anim.zoom_in,R.anim.zoom_out)
                     requireActivity().finish()
                 }.setNegativeButton("No") { dialog, which -> }.show()
+        })
+
+        binding.order.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(context,  OrderManagerActivity::class.java))
         })
     }
 

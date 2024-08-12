@@ -95,10 +95,16 @@ class SignInActivity : BaseActivity() {
 //                return@setOnClickListener
 //            }
 //            verifyCode(otp)
+
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             binding.progressBar.visibility = View.VISIBLE
             binding.signInButton.isEnabled = false
             if (binding.phoneEditText.text?.isEmpty() == true) {
                 Toast.makeText(this, "Please Enter phone number", Toast.LENGTH_SHORT).show()
+                if (binding.phoneEditText.requestFocus()) {
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
                 binding.progressBar.visibility = View.GONE
                 binding.signInButton.isEnabled = true
                 return@setOnClickListener
@@ -106,7 +112,6 @@ class SignInActivity : BaseActivity() {
             val code = binding.countryCodePicker.selectedCountryCode
             val phone = binding.phoneEditText.text
             sendVerificationCode("+$code$phone")
-            Toast.makeText(this, "$code", Toast.LENGTH_SHORT).show()
 
         }
 
@@ -120,7 +125,7 @@ class SignInActivity : BaseActivity() {
     private fun sendVerificationCode(phoneNumber: String) {
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                signInWithPhoneAuthCredential(credential)
+//                signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
