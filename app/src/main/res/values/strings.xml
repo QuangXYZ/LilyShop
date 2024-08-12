@@ -10,5 +10,6 @@
     <string name="facebook_app_id">1458305761317748</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">a14997bf31ce38fa2c83456cbadbae21</string>
+    <string name="resend_code"><u>Resend Code</u></string>
 
 </resources>

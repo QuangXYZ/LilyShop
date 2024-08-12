@@ -12,6 +12,7 @@ import com.quang.lilyshop.Adapter.OrderDetailAdapter
 import com.quang.lilyshop.Helper.ManagementCart
 import com.quang.lilyshop.Model.AddressModel
 import com.quang.lilyshop.Model.OrderModel
+import com.quang.lilyshop.Model.OrderStatus
 import com.quang.lilyshop.ViewModel.CheckoutViewModel
 import com.quang.lilyshop.activity.Fragment.PaymentBottomDialogFragment
 import com.quang.lilyshop.databinding.ActivityCheckoutBinding
@@ -141,7 +142,7 @@ class CheckoutActivity : BaseActivity() {
         binding.progress.visibility = View.VISIBLE
 
         val order = OrderModel(
-            "", "", managementCart.getListCart(), delivery, tax, total
+            "", "", managementCart.getListCart(),OrderStatus.PENDING, delivery, tax, total
         )
         managementCart.clearListCart()
 

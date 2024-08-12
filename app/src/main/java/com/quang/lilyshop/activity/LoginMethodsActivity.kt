@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -11,13 +12,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.quang.lilyshop.Model.UserModel
 import com.quang.lilyshop.R
+import com.quang.lilyshop.ViewModel.PhoneAuthViewModel
+import com.quang.lilyshop.ViewModel.PhoneAuthViewModelFactory
 import com.quang.lilyshop.databinding.ActivityLoginMethodsBinding
 import com.quang.lilyshop.networkService.ApiState
+import com.quang.lilyshop.repositoy.PhoneAuthRepository
 
 class LoginMethodsActivity : BaseActivity() {
     private lateinit var binding: ActivityLoginMethodsBinding
     private val googleSignInRequestCode = 1
+    private val viewModel: PhoneAuthViewModel by viewModels {
+        PhoneAuthViewModelFactory(PhoneAuthRepository(FirebaseAuth.getInstance()))
+    }
 
 
 
@@ -71,6 +79,19 @@ class LoginMethodsActivity : BaseActivity() {
             .addOnSuccessListener {
                 binding.progressBar.visibility = View.GONE
 
+                if (it.additionalUserInfo?.isNewUser == true) {
+                    val name = it.user?.displayName.toString()
+                    val email = it.user?.email.toString()
+                    val photoUrl = it.user?.photoUrl.toString()
+                    val uid = it.user?.uid.toString()
+
+                    val user = UserModel(name = name, email = email, picUrl = photoUrl)
+                    viewModel.saveNewUser(uid, user, {
+
+                    }, {
+
+                    })
+                }
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
 
