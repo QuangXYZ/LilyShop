@@ -12,8 +12,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.quang.lilyshop.Model.UserModel
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class PhoneAuthRepository(private val auth: FirebaseAuth) {
+@Singleton
+class PhoneAuthRepository  @Inject constructor(private val auth: FirebaseAuth) {
 
     private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
 
@@ -22,16 +25,9 @@ class PhoneAuthRepository(private val auth: FirebaseAuth) {
         activity: Activity,
         callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     ) {
-//        val options = PhoneAuthOptions.newBuilder(auth)
-//            .setPhoneNumber(phoneNumber)// Phone number to verify
-//            .setTimeout(60L, TimeUnit.SECONDS)// Timeout and unit
-//            .setActivity(activity)// Activity (for callback binding)
-//            .setCallbacks(callbacks)// OnVerificationStateChangedCallbacks
-//            .build()
-//        PhoneAuthProvider.verifyPhoneNumber(options)
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber) // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(activity) // Activity (for callback binding)
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()

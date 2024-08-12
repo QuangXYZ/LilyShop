@@ -23,15 +23,24 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.quang.lilyshop.R
 import com.quang.lilyshop.ViewModel.PhoneAuthViewModel
 import com.quang.lilyshop.ViewModel.PhoneAuthViewModelFactory
+import com.quang.lilyshop.ViewModel.UserViewModel
+import com.quang.lilyshop.ViewModel.UserViewModelFactory
 import com.quang.lilyshop.databinding.ActivitySignInBinding
 import com.quang.lilyshop.repositoy.PhoneAuthRepository
+import com.quang.lilyshop.repositoy.UserRepository
 
 class SignInActivity : BaseActivity() {
     private val viewModel: PhoneAuthViewModel by viewModels {
         PhoneAuthViewModelFactory(PhoneAuthRepository(FirebaseAuth.getInstance()))
+    }
+
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory(UserRepository(FirebaseDatabase.getInstance().reference))
     }
     private lateinit var binding: ActivitySignInBinding
     private lateinit var verificationId: String
@@ -162,6 +171,7 @@ class SignInActivity : BaseActivity() {
                     "Verification failed: ${e.message}",
                     Toast.LENGTH_SHORT
                 ).show()
+
             }
 
             override fun onCodeSent(
@@ -181,16 +191,71 @@ class SignInActivity : BaseActivity() {
         signInWithPhoneAuthCredential(credential)
     }
 
+//    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+//        val phoneNumber = binding.phoneEditText.text.toString()
+//        viewModel.signInWithPhoneAuthCredential(credential, {
+//            Log.d("SignInActivity", "Verifying with credential")
+//
+//            FirebaseAuth.getInstance().signInWithCredential(credential)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Log.d("SignInActivity", "Sign-in successful")
+//
+//                        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return@addOnCompleteListener
+//                        userViewModel.checkAndCreateUser(uid, phoneNumber) { success ->
+//                            if (success) {
+//                                Log.d("SignInActivity", "User creation successful")
+//                                startActivity(Intent(this, MainActivity::class.java))
+//                                finish()
+//                            } else {
+//                                Log.e("SignInActivity", "Failed to create user in database")
+//                                Toast.makeText(this, "Failed to create user.", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                    } else {
+//                        Log.e("SignInActivity", "Sign-in failed: ${task.exception?.message}", task.exception)
+//                        Toast.makeText(this, "Sign-in failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//        }, {
+//            Log.e("SignInActivity", "Sign in failed: ${it.message}", it)
+//            Toast.makeText(this, "Sign in failed: ${it.message}", Toast.LENGTH_SHORT).show()
+//        })
+//    }
+
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        val phoneNumber = binding.phoneEditText.text.toString()
+        Log.d("MainActivity", "Verifying with credential")
+
         viewModel.signInWithPhoneAuthCredential(credential, {
-            Toast.makeText(this, "Sign in success!", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, MainActivity::class.java))
-        }, {
-            Toast.makeText(this, "Sign in failed: ${it.message}", Toast.LENGTH_SHORT).show()
+            Log.d("MainActivity", "Sign-in successful")
+
+            val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return@signInWithPhoneAuthCredential
+            userViewModel.checkAndCreateUser(uid, phoneNumber) { success ->
+                if (success) {
+                    Log.d("MainActivity", "User creation successful")
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Log.e("MainActivity", "Failed to create user in database")
+                    Toast.makeText(this, "Failed to create user.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }, { exception ->
+            Log.e("MainActivity", "Sign-in failed: ${exception.message}", exception)
+            Toast.makeText(this, "Sign-in failed: ${exception.message}", Toast.LENGTH_SHORT).show()
         })
     }
 
 
 
-
+//    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+//        viewModel.signInWithPhoneAuthCredential(credential, {
+//            Toast.makeText(this, "Sign in success!", Toast.LENGTH_SHORT).show()
+//            startActivity(Intent(this, MainActivity::class.java))
+//        }, {
+//            Toast.makeText(this, "Sign in failed: ${it.message}", Toast.LENGTH_SHORT).show()
+//            Log.e("SignInActivity", "Sign-in failed: ${it.message}", it)
+//        })
+//    }
 }

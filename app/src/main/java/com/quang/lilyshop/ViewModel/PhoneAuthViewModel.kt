@@ -15,6 +15,8 @@ import com.quang.lilyshop.Model.UserModel
 import com.quang.lilyshop.repositoy.PhoneAuthRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
+
 
 class PhoneAuthViewModel(private val repository: PhoneAuthRepository) : ViewModel() {
 
@@ -29,6 +31,7 @@ class PhoneAuthViewModel(private val repository: PhoneAuthRepository) : ViewMode
     init {
         startCountdown()
     }
+
     fun sendVerificationCode(
         phoneNumber: String,
         activity: Activity,
@@ -40,7 +43,7 @@ class PhoneAuthViewModel(private val repository: PhoneAuthRepository) : ViewMode
     fun resendVerificationCode(
         phoneNumber: String,
         activity: Activity,
-        callbacks: OnVerificationStateChangedCallbacks
+        callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     ) {
         repository.resendVerificationCode(phoneNumber, activity, callbacks)
         startCountdown()
