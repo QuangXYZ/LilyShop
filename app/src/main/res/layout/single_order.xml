@@ -44,6 +44,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product"
             android:layout_width="match_parent"
+            android:overScrollMode="never"
+            android:contextClickable="false"
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.divider.MaterialDivider

@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quang.lilyshop.Adapter.OrderAdapter
 import com.quang.lilyshop.Model.OrderModel
-import com.quang.lilyshop.R
 import com.quang.lilyshop.databinding.FragmentToPayBinding
 
-class ToPayFragment : Fragment() {
+class AllOrderFragment : Fragment() {
     private lateinit var binding: FragmentToPayBinding
 
 
@@ -26,8 +25,8 @@ class ToPayFragment : Fragment() {
     companion object {
         private const val ARG_DATA = "orders"
 
-        fun newInstance(orders: ArrayList<OrderModel>?): ToPayFragment {
-            val fragment = ToPayFragment()
+        fun newInstance(orders: ArrayList<OrderModel>?): AllOrderFragment {
+            val fragment = AllOrderFragment()
             val bundle = Bundle().apply {
                 putParcelableArrayList(ARG_DATA, orders)
             }

@@ -33,10 +33,13 @@ class OrderManagerActivity : BaseActivity() {
             binding.pager.adapter = adapter
             TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
                 when (position) {
-                    0 -> tab.text = "To Pay"
-                    1 -> tab.text = "To Ship"
-                    2 -> tab.text = "Completed"
-                    3 -> tab.text = "Cancelled"
+                    0 -> tab.text = "All"
+                    1 -> tab.text = "Pending"
+                    2 -> tab.text = "Processing"
+                    3 -> tab.text = "Shipped"
+                    4 -> tab.text = "Delivered"
+                    5 -> tab.text = "Cancelled"
+
                 }
             }.attach()
         })

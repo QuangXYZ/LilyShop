@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Fragment.CancelledOrderFragment">
+    tools:context=".activity.Fragment.DeliveredOrderFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersList"
         android:layout_width="match_parent"
         android:overScrollMode="never"
         android:layout_height="wrap_content"/>
+
 
 
 

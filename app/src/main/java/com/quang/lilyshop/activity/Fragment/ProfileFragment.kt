@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.quang.lilyshop.activity.IntroActivity
 import com.quang.lilyshop.activity.OrderManagerActivity
+import com.quang.lilyshop.activity.ProductRatingActivity
+import com.quang.lilyshop.activity.ReviewProductListActivity
 import com.quang.lilyshop.databinding.FragmentProfileBinding
 
 
@@ -64,6 +66,10 @@ class ProfileFragment() : Fragment() {
     }
 
     private fun settingUpListeners() {
+
+        binding.ratingProduct.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(context, ReviewProductListActivity::class.java))
+        })
         binding.logout.setOnClickListener(View.OnClickListener {
 
             AlertDialog.Builder(context)

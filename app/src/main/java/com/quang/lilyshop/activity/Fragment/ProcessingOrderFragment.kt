@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.quang.lilyshop.Adapter.OrderAdapter
 import com.quang.lilyshop.Model.OrderModel
 import com.quang.lilyshop.R
+import com.quang.lilyshop.databinding.FragmentToShipBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +18,11 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ToShipFragment.newInstance] factory method to
+ * Use the [ProcessingOrderFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ToShipFragment : Fragment() {
+class ProcessingOrderFragment : Fragment() {
+    private lateinit var binding: FragmentToShipBinding
 
 
     override fun onCreateView(
@@ -26,20 +30,30 @@ class ToShipFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_to_ship, container, false)
+        binding = FragmentToShipBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
         private const val ARG_DATA = "orders"
 
-        fun newInstance(orders: ArrayList<OrderModel>?): ToShipFragment {
-            val fragment = ToShipFragment()
+        fun newInstance(orders: ArrayList<OrderModel>?): ProcessingOrderFragment {
+            val fragment = ProcessingOrderFragment()
             val bundle = Bundle().apply {
                 putParcelableArrayList(ARG_DATA, orders)
             }
             fragment.arguments = bundle
             return fragment
         }
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val orders: ArrayList<OrderModel>? = arguments?.getParcelableArrayList(ARG_DATA)
+        binding.ordersList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.ordersList.adapter = orders?.let { OrderAdapter(it) }
 
     }
 }

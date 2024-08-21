@@ -60,6 +60,8 @@ class CheckoutActivity : BaseActivity() {
         managementCart = ManagementCart(this)
         viewModel = CheckoutViewModel()
         viewModel.getDefaultAddress(onSuccess = { address ->
+
+            this.address = address
             binding.addressName.text = "${address?.fullName} ${address?.phoneNumber}"
             binding.addressStreet.text = "${address?.address}"
             binding.addressProvince.text =
@@ -142,7 +144,8 @@ class CheckoutActivity : BaseActivity() {
         binding.progress.visibility = View.VISIBLE
 
         val order = OrderModel(
-            "", "", managementCart.getListCart(),OrderStatus.PENDING, delivery, tax, total
+            "", "", managementCart.getListCart(),OrderStatus.PENDING,
+            address!!, delivery, tax, total
         )
         managementCart.clearListCart()
 
