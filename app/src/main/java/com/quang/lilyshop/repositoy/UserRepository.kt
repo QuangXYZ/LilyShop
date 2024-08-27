@@ -30,4 +30,15 @@ class UserRepository @Inject constructor(private val database : DatabaseReferenc
                 onComplete(task.isSuccessful)
             }
     }
+    fun getUser(uid: String, callback: (User?) -> Unit) {
+        database.child("users").child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                callback(snapshot.getValue(User::class.java))
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(null)
+            }
+        })
+    }
 }

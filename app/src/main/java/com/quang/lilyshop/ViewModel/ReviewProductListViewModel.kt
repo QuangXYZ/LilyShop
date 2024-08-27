@@ -12,14 +12,18 @@ class ReviewProductListViewModel : ViewModel() {
     private val _products = MutableLiveData<List<ProductModel>>()
     val products: LiveData<List<ProductModel>>
         get() = _products
+    private val _history = MutableLiveData<List<ProductModel>>()
+    val history: LiveData<List<ProductModel>>
+        get() = _history
 
     init {
         getProductsForReview()
     }
 
     fun getProductsForReview () {
-        repository.getProductForReview( { product ->
+        repository.getProductForReview( { product, history ->
             _products.value = product
+            _history.value = history
         }, {
 
         }

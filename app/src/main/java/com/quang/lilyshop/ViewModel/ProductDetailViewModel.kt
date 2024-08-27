@@ -5,16 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.quang.lilyshop.Helper.DataLocalManager
-import com.quang.lilyshop.Model.OrderModel
 import com.quang.lilyshop.Model.ReviewModel
-import com.quang.lilyshop.repositoy.OrderRepository
 import com.quang.lilyshop.repositoy.ReviewRepository
 import kotlinx.coroutines.launch
 
-class ProductRatingViewModel : ViewModel(){
+class ProductDetailViewModel : ViewModel() {
     private val repository = ReviewRepository()
-    private val _reviews = MutableLiveData<ReviewModel>()
-    val reviews: LiveData<ReviewModel>
+    private val _reviews = MutableLiveData<List<ReviewModel>>()
+    val reviews: LiveData<List<ReviewModel>>
         get() = _reviews
 
     private val _error = MutableLiveData<String>()
@@ -22,13 +20,14 @@ class ProductRatingViewModel : ViewModel(){
 
 
 
-    fun addProductReview(review: ReviewModel, onSuccess: () -> Unit, onFailure: (Exception) -> Unit){
-        review.userName = DataLocalManager.user?.name ?: ""
-        review.picUrl = DataLocalManager.user?.picUrl ?: ""
+    fun loadReview(
+        productId: String,
+
+        ) {
 
         viewModelScope.launch {
-            repository.saveReview(review, {
-                onSuccess
+            repository.getReviewsByProduct(productId, {
+                _reviews.value = it
             }, {
                 _error.value = it.toString()
             })

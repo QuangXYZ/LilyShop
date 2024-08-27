@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
@@ -17,7 +16,6 @@ import com.quang.lilyshop.R
 import com.quang.lilyshop.ViewModel.PhoneAuthViewModel
 import com.quang.lilyshop.ViewModel.PhoneAuthViewModelFactory
 import com.quang.lilyshop.databinding.ActivityLoginMethodsBinding
-import com.quang.lilyshop.networkService.ApiState
 import com.quang.lilyshop.repositoy.PhoneAuthRepository
 
 class LoginMethodsActivity : BaseActivity() {
@@ -87,7 +85,6 @@ class LoginMethodsActivity : BaseActivity() {
 
                     val user = UserModel(name = name, email = email, picUrl = photoUrl)
                     viewModel.saveNewUser(uid, user, {
-
                     }, {
 
                     })
