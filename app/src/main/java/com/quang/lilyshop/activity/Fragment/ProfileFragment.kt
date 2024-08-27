@@ -13,8 +13,10 @@ import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.quang.lilyshop.Helper.DataLocalManager
 import com.quang.lilyshop.activity.IntroActivity
 import com.quang.lilyshop.activity.OrderManagerActivity
+import com.quang.lilyshop.activity.ReviewManagerActivity
 import com.quang.lilyshop.databinding.FragmentProfileBinding
 
 
@@ -44,17 +46,23 @@ class ProfileFragment() : Fragment() {
     }
 
     private fun init() {
-
-
-        binding.name.text = FirebaseAuth.getInstance().currentUser?.displayName ?: "Guest"
-        if (FirebaseAuth.getInstance().currentUser?.photoUrl != null) {
-            Glide.with(this)
-                .load(FirebaseAuth.getInstance().currentUser?.photoUrl)
-                .into(binding.avatar)
+        val user = DataLocalManager.user
+        if (user != null) {
+            binding.name.text = user.name
+            if (user.picUrl != "") {
+                Glide.with(this)
+                    .load(user.picUrl)
+                    .into(binding.avatar)
+            }
+            else {
+                binding.avatar.setImageResource(R.drawable.user_default)
+            }
         }
         else {
+            binding.name.text = "Guest"
             binding.avatar.setImageResource(R.drawable.user_default)
         }
+
 
 
 
@@ -64,6 +72,10 @@ class ProfileFragment() : Fragment() {
     }
 
     private fun settingUpListeners() {
+
+        binding.ratingProduct.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(context, ReviewManagerActivity::class.java))
+        })
         binding.logout.setOnClickListener(View.OnClickListener {
 
             AlertDialog.Builder(context)

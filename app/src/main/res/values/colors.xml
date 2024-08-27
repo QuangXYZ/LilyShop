@@ -17,6 +17,8 @@
     <color name="red60">#99D7443E</color>
     <color name="blue80">#CC2196F3</color>
     <color name="yellow">#FFC30D</color>
+    <color name="green">#25a695</color>
+
     <color name="text_color">#585274</color>
 
     <color name="switcher_on_color">#48ea8b</color>

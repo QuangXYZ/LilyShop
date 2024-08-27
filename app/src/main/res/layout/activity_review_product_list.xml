@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f8f8f8"
-    tools:context=".activity.OrderManagerActivity">
+    tools:context=".activity.ReviewManagerActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="4sp"
+            android:padding="4dp"
 
             android:src="@drawable/angle_left"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +34,7 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Orders"
+            android:text="Review Manager"
             android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -42,7 +43,6 @@
             app:layout_constraintStart_toStartOf="@+id/backBtn"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,14 +60,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tabGravity="center"
+            app:tabGravity="fill"
             app:tabRippleColor="@android:color/transparent"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorColor="@color/orange"
             app:tabTextColor="@color/text_color"
-            app:tabMode="scrollable" >
+            app:tabMode="fixed" >
 
         </com.google.android.material.tabs.TabLayout>
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
@@ -81,7 +82,6 @@
             android:overScrollMode="never"
             android:labelFor="@id/tab_layout" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

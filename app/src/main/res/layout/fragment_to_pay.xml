@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.Fragment.ToPayFragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="To Pay"/>
+    tools:context=".activity.Fragment.AllOrderFragment">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersList"
         android:layout_width="match_parent"
+        android:overScrollMode="never"
         android:layout_height="wrap_content"/>
 
 
